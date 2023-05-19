@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Warden’s documentation! &mdash; Warden  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installing Warden" href="installing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Warden
+          </a>
+              <div class="version">
+                0.13.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing Warden</a></li>
+<li class="toctree-l1"><a class="reference internal" href="services.html">Global Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Warden Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About Warden</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="images.html">Docker Images</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/wardenenv/warden">Github Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Warden</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Welcome to Warden’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-warden-s-documentation">
+<h1>Welcome to Warden’s documentation!<a class="headerlink" href="#welcome-to-warden-s-documentation" title="Permalink to this heading"></a></h1>
+<p>Under the hood <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> is used to control everything which Warden runs (shared services as well as per-project containers) via the Docker Engine.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Traefik for SSL termination and routing/proxying requests into the correct containers.</p></li>
+<li><p>Portainer for quick visibility into what’s running inside the local Docker host.</p></li>
+<li><p>Dnsmasq to serve DNS responses for <code class="docutils literal notranslate"><span class="pre">.test</span></code> domains eliminating manual editing of <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code></p></li>
+<li><p>An SSH tunnel for connecting from Sequel Pro or TablePlus into any one of multiple running database containers.</p></li>
+<li><p>Warden issued wildcard SSL certificates for running https on all local development domains.</p></li>
+<li><p>Full support for Magento 1, Magento 2, Laravel, Symfony 4, Shopware 6 on both macOS and Linux.</p></li>
+<li><p>Ability to override, extend, or setup completely custom environment definitions on a per-project basis.</p></li>
+<li><p>The <a class="reference internal" href="mutagen.html"><span class="std std-doc">mutagen</span></a> files syncing, improves performance on the macOS based systems.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing Warden</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installing.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installing.html#installing-via-homebrew">Installing via Homebrew</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installing.html#alternative-installation">Alternative Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installing.html#windows-installation-via-wsl2">Windows Installation (via WSL2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installing.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="services.html">Global Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="services.html#customizable-settings">Customizable Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Warden Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#common-commands">Common Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#further-information">Further Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="environments/types.html">Environment Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments/types.html#environment-templates">Environment Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments/magento2.html">Installing Magento 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments/shopware.html">Installing Shopware 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments/customizing.html">Customizing An Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments/drupal.html">Installing Drupal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration/blackfire.html">Blackfire Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/database.html">Database Connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/dns-resolver.html">Automatic DNS Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/elasticsearch.html">Elasticsearch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/livereload.html">LiveReload Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/magento2-testing.html">Testing Magento 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/mftf.html">Magento Functional Testing Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/multipledomains.html">Multiple Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/reporting.html">Allure Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/xdebug.html">Xdebug Support</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">About Warden</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="images.html">Docker Images</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/wardenenv/warden">Github Project</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installing.html" class="btn btn-neutral float-right" title="Installing Warden" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023 by David Alger..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

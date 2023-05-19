@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installing Warden &mdash; Warden  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Global Services" href="services.html" />
+    <link rel="prev" title="Welcome to Warden’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Warden
+          </a>
+              <div class="version">
+                0.13.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installing Warden</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-via-homebrew">Installing via Homebrew</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alternative-installation">Alternative Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows-installation-via-wsl2">Windows Installation (via WSL2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-dns-resolution">Automatic DNS Resolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trusted-ca-root-certificate">Trusted CA Root Certificate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="services.html">Global Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Warden Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About Warden</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="images.html">Docker Images</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/wardenenv/warden">Github Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Warden</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installing Warden</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installing-warden">
+<h1>Installing Warden<a class="headerlink" href="#installing-warden" title="Permalink to this heading"></a></h1>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://hub.docker.com/editions/community/docker-ce-desktop-mac">Docker Desktop for Mac</a> 2.2.0.0 or later or <a class="reference external" href="https://docs.docker.com/install/">Docker for Linux</a> (Warden has been tested on Fedora 29 and Ubuntu 18.10) or <a class="reference external" href="https://docs.docker.com/desktop/windows/install/">Docker for Windows</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> version 2 or later is required (this can be installed via <code class="docutils literal notranslate"><span class="pre">brew</span></code>, <code class="docutils literal notranslate"><span class="pre">apt</span></code>, <code class="docutils literal notranslate"><span class="pre">dnf</span></code>, or <code class="docutils literal notranslate"><span class="pre">pip3</span></code> as needed)</p></li>
+<li><p><a class="reference external" href="https://mutagen.io/">Mutagen</a> 0.11.4 or later is required for environments leveraging sync sessions on Mac OS. Warden will attempt to install this via <code class="docutils literal notranslate"><span class="pre">brew</span></code> if not present.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>By default Docker Desktop allocates 2GB memory.</strong> This leads to extensive swapping, killed processed and extremely high CPU usage during some Magento actions, like for example running sampledata:deploy and/or installing the application. It is recommended to assign at least 6GB RAM to Docker Desktop prior to deploying any Magento environments on Docker Desktop. This can be corrected via Preferences -&gt; Resources -&gt; Advanced -&gt; Memory. While you are there, it wouldn’t hurt to let Docker have the use of a few more vCPUs (keep it at least 4 less than the maximum CPU allocation however to avoid having macOS contend with Docker for use of cores)</p>
+</div>
+</section>
+<section id="installing-via-homebrew">
+<h2>Installing via Homebrew<a class="headerlink" href="#installing-via-homebrew" title="Permalink to this heading"></a></h2>
+<p>Warden may be installed via <a class="reference external" href="https://brew.sh/">Homebrew</a> on both macOS and Linux hosts:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>brew install wardenenv/warden/warden
+warden svc up
+</pre></div>
+</div>
+</section>
+<section id="alternative-installation">
+<h2>Alternative Installation<a class="headerlink" href="#alternative-installation" title="Permalink to this heading"></a></h2>
+<p>Warden may be installed by cloning the repository to the directory of your choice and adding it to your <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>. This method of installation may be when Homebrew does not already exist on your system or when preparing contributions to the Warden project.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo mkdir /opt/warden
+sudo chown $(whoami) /opt/warden
+git clone -b main https://github.com/wardenenv/warden.git /opt/warden
+echo &#39;export PATH=&quot;/opt/warden/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc
+PATH=&quot;/opt/warden/bin:$PATH&quot;
+warden svc up
+</pre></div>
+</div>
+</section>
+<section id="windows-installation-via-wsl2">
+<h2>Windows Installation (via WSL2)<a class="headerlink" href="#windows-installation-via-wsl2" title="Permalink to this heading"></a></h2>
+<p>Install <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL2 in Windows</a>.<br />
+Install Ubuntu 20.04 or other compatible Linux version from the Windows store or <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-manual">manually download distibutions</a>.<br />
+Launch Docker for Windows, make sure that the option for WSL2 integration is set.<br />
+Launch wsl from your terminal of choice.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    wsl
+    /bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&quot;
+    brew install wardenenv/warden/warden
+    warden svc up
+</pre></div>
+</div>
+<p>In order for DNS entries to be resolved either add them to your Windows hosts file or add 127.0.0.1 as the first DNS server in your current network adapter in Windows.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>For performance reasons code should be located in the WSL Linux home path or other WSL local path ~/code/projectname NOT the default /mnt/c path mapping.</strong></p>
+</div>
+<p>GUI tools for Windows should use the network paths provided by WSL2: <code class="docutils literal notranslate"><span class="pre">\\wsl$\Ubuntu-20.04\home\&lt;USER&gt;\&lt;PROJECTPATH&gt;</span></code>.</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading"></a></h2>
+<section id="automatic-dns-resolution">
+<h3>Automatic DNS Resolution<a class="headerlink" href="#automatic-dns-resolution" title="Permalink to this heading"></a></h3>
+<p>On Linux environments, you will need to configure your DNS to resolve <code class="docutils literal notranslate"><span class="pre">*.test</span></code> to <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> or use <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> entries. On Mac OS this configuration is automatic via the BSD per-TLD resolver configuration found at <code class="docutils literal notranslate"><span class="pre">/etc/resolver/test</span></code>. On Windows manual configuration of the network adapter DNS server is required.</p>
+<p>For more information see the configuration page for {doc}`Automatic DNS Resolution &lt;configuration/dns-resolver&gt;</p>
+</section>
+<section id="trusted-ca-root-certificate">
+<h3>Trusted CA Root Certificate<a class="headerlink" href="#trusted-ca-root-certificate" title="Permalink to this heading"></a></h3>
+<p>In order to sign SSL certificates that may be trusted by a developer workstation, Warden uses a CA root certificate with CN equal to <code class="docutils literal notranslate"><span class="pre">Warden</span> <span class="pre">Proxy</span> <span class="pre">Local</span> <span class="pre">CA</span> <span class="pre">(&lt;hostname&gt;)</span></code> where <code class="docutils literal notranslate"><span class="pre">&lt;hostname&gt;</span></code> is the hostname of the machine the certificate was generated on at the time Warden was first installed. The CA root can be found at <code class="docutils literal notranslate"><span class="pre">~/.warden/ssl/rootca/certs/ca.cert.pem</span></code>.</p>
+<p>On MacOS this root CA certificate is automatically added to a users trust settings as can be seen by searching for ‘Warden Proxy Local CA’ in the Keychain application. This should result in the certificates signed by Warden being trusted by Safari and Chrome automatically. If you use Firefox, you will need to add this CA root to trust settings specific to the Firefox browser per the below.</p>
+<p>On Ubuntu/Debian this CA root is copied into <code class="docutils literal notranslate"><span class="pre">/usr/local/share/ca-certificates</span></code> and on Fedora/CentOS (Enterprise Linux) it is copied into <code class="docutils literal notranslate"><span class="pre">/etc/pki/ca-trust/source/anchors</span></code> and then the trust bundle is updated appropriately. For new systems, this typically is all that is needed for the CA root to be trusted on the default Firefox browser, but it may not be trusted by Chrome or Firefox automatically should the browsers have already been launched prior to the installation of Warden (browsers on Linux may and do cache CA bundles)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are using <strong>Firefox</strong> and it warns you the SSL certificate is invalid/untrusted, go to Preferences -&gt; Privacy &amp; Security -&gt; View Certificates (bottom of page) -&gt; Authorities -&gt; Import and select <code class="docutils literal notranslate"><span class="pre">~/.warden/ssl/rootca/certs/ca.cert.pem</span></code> for import, then reload the page.</p>
+<p>If you are using <strong>Chrome</strong> on <strong>Linux</strong> and it warns you the SSL certificate is invalid/untrusted, go to Chrome Settings -&gt; Privacy And Security -&gt; Manage Certificates (see more) -&gt; Authorities -&gt; Import and select <code class="docutils literal notranslate"><span class="pre">~/.warden/ssl/rootca/certs/ca.cert.pem</span></code> for import, then reload the page.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Warden’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="services.html" class="btn btn-neutral float-right" title="Global Services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023 by David Alger..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

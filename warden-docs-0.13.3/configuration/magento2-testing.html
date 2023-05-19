@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Testing Magento 2 &mdash; Warden  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Magento Functional Testing Framework" href="mftf.html" />
+    <link rel="prev" title="LiveReload Setup" href="livereload.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Warden
+          </a>
+              <div class="version">
+                0.13.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installing.html">Installing Warden</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services.html">Global Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Warden Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environments.html">Environments</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../configuration.html">Configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="blackfire.html">Blackfire Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">Database Connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dns-resolver.html">Automatic DNS Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elasticsearch.html">Elasticsearch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="livereload.html">LiveReload Setup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Testing Magento 2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#running-unit-tests">Running Unit Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#execution">Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debugging">Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-javascript-unit-tests">Running Javascript Unit Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-integration-tests">Running Integration Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Debugging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-setup-integration-tests">Running Setup Integration Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-api-functional-tests">Running API Functional Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-mftf-tests">Running MFTF Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Debugging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mftf.html">Magento Functional Testing Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multipledomains.html">Multiple Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting.html">Allure Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xdebug.html">Xdebug Support</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About Warden</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images.html">Docker Images</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/wardenenv/warden">Github Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Warden</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../configuration.html">Configuration</a></li>
+      <li class="breadcrumb-item active">Testing Magento 2</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="testing-magento-2">
+<h1>Testing Magento 2<a class="headerlink" href="#testing-magento-2" title="Permalink to this heading"></a></h1>
+<p><strong>Warden</strong> is the first Development Environment that has testing in the blood.</p>
+<p>To enable testing components, set the following configuration in your project’s <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WARDEN_TEST_DB</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>This will launch an additional MySQL 5.7 database instance running on <code class="docutils literal notranslate"><span class="pre">tempfs</span></code> (blazing-fast memory) storage.</p>
+<p>Temporary file locations have also been mounted into <code class="docutils literal notranslate"><span class="pre">tempfs</span></code> memory stoage:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/var/www/html/dev/tests/integration/tmp/</span></code></p></li>
+</ul>
+<section id="running-unit-tests">
+<h2>Running Unit Tests<a class="headerlink" href="#running-unit-tests" title="Permalink to this heading"></a></h2>
+<p>Create your <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code> using contents of <code class="docutils literal notranslate"><span class="pre">phpunit.xml.dist</span></code>. We recommend customizing values of:</p>
+<ul>
+<li><p>Memory usage <code class="docutils literal notranslate"><span class="pre">TESTS_MEM_USAGE_LIMIT</span></code> with value of <code class="docutils literal notranslate"><span class="pre">8G</span></code> should be enough</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;php&gt;</span>
+<span class="w">    </span><span class="nt">&lt;const</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;TESTS_MEM_USAGE_LIMIT&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;8G&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/php&gt;</span><span class="w"> </span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>That’s it! Now you are ready to run Unit Tests.</p>
+<section id="execution">
+<h3>Execution<a class="headerlink" href="#execution" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>To run all tests declared in <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code> execute:<br> <code class="docutils literal notranslate"><span class="pre">vendor/bin/phpunit</span> <span class="pre">-c</span> <span class="pre">dev/tests/unit/phpunit.xml</span></code></p></li>
+<li><p>If you need to run only specific directory, execute:<br> <code class="docutils literal notranslate"><span class="pre">vendor/bin/phpunit</span> <span class="pre">-c</span> <span class="pre">dev/tests/unit/phpunit.xml</span> <span class="pre">{PATH</span> <span class="pre">TO</span> <span class="pre">TESTS}</span></code></p></li>
+</ul>
+</section>
+<section id="debugging">
+<h3>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading"></a></h3>
+<p>If you have <a class="reference internal" href="xdebug.html"><span class="doc">configured Xdebug</span></a>, run Unit tests inside <strong>Debug</strong> console (<code class="docutils literal notranslate"><span class="pre">warden</span> <span class="pre">debug</span></code> instead of <code class="docutils literal notranslate"><span class="pre">warden</span> <span class="pre">shell</span></code>). The code execution will stop at the breakpoints.</p>
+</section>
+</section>
+<section id="running-javascript-unit-tests">
+<h2>Running Javascript Unit Tests<a class="headerlink" href="#running-javascript-unit-tests" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Configure your <code class="docutils literal notranslate"><span class="pre">.env</span></code> and set <code class="docutils literal notranslate"><span class="pre">NODE_VERSION=12</span></code></p></li>
+<li><p>Launch a shell session within the project environment’s <code class="docutils literal notranslate"><span class="pre">php-fpm</span></code> container with <code class="docutils literal notranslate"><span class="pre">warden</span> <span class="pre">shell</span></code></p></li>
+<li><p>Install javascript unit test dependencies with <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code></p></li>
+<li><p>Deploy static content with</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> bin/magento setup:static-content:deploy -f
+</pre></div>
+</div>
+</li>
+</ol>
+<section id="id1">
+<h3>Execution<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>grunt<span class="w"> </span>spec:&lt;THEME&gt;
+</pre></div>
+</div>
+<p>For more specific jasmine unit test instructions, see the Magento DevDocs (<a class="reference external" href="https://devdocs.magento.com/guides/v2.4/test/js/jasmine.html">Magento 2.4</a>)</p>
+</section>
+<section id="troubleshooting">
+<h3>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>You must be within your project environment’s <code class="docutils literal notranslate"><span class="pre">php-fpm</span></code> container before running <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>.  If you are having issues
+installing node packages, remove your <code class="docutils literal notranslate"><span class="pre">node_modules</span></code> directory with <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">node_modules/</span> <span class="pre">package-lock.json</span></code> and then retry <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>.</p></li>
+<li><p>If you have an issue with <code class="docutils literal notranslate"><span class="pre">jasmine</span></code> tests being unable to execute it might be due to installing the wrong versions of node <code class="docutils literal notranslate"><span class="pre">grunt-contrib-jasmine</span></code>.
+You can fix this by using:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>package.json.sample<span class="w"> </span>package.json<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>node_modules/<span class="w"> </span>package-lock.json<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>install
+</pre></div>
+</div>
+</section>
+</section>
+<section id="running-integration-tests">
+<h2>Running Integration Tests<a class="headerlink" href="#running-integration-tests" title="Permalink to this heading"></a></h2>
+<p>All the necessary files are located in <code class="docutils literal notranslate"><span class="pre">dev/tests/integration/</span></code>:</p>
+<ol class="arabic">
+<li><p>Create your <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code> using contents of <code class="docutils literal notranslate"><span class="pre">phpunit.xml.dist</span></code>. We recommend customizing values of:</p>
+<ul class="simple">
+<li><p>Maximum memory usage <code class="docutils literal notranslate"><span class="pre">TESTS_MEM_USAGE_LIMIT</span></code> with value of <code class="docutils literal notranslate"><span class="pre">8G</span></code> should be enough</p></li>
+<li><p>Magento deployment mode <code class="docutils literal notranslate"><span class="pre">TESTS_MAGENTO_MODE</span></code> should be covered both for <code class="docutils literal notranslate"><span class="pre">developer</span></code> and <code class="docutils literal notranslate"><span class="pre">production</span></code></p></li>
+<li><p>Significantly increase the speed with <code class="docutils literal notranslate"><span class="pre">TESTS_PARALLEL_RUN</span></code> set to <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+</ul>
+</li>
+<li><p>You need to create <code class="docutils literal notranslate"><span class="pre">etc/install-config-mysql.php</span></code> based on <code class="docutils literal notranslate"><span class="pre">etc/install-config-mysql.php.dist</span></code> as a template. The arguments are exactly the same to those you use for <code class="docutils literal notranslate"><span class="pre">bin/magento</span> <span class="pre">setup:install</span></code>:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="p">[</span>
+   <span class="s1">&#39;db-host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tmp-mysql&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;db-user&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;db-password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;magento&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;db-name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;magento_integration_tests&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;backend-frontname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;backend&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;search-engine&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;elasticsearch7&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;elasticsearch-host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;elasticsearch&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;elasticsearch-port&#39;</span> <span class="o">=&gt;</span> <span class="mi">9200</span><span class="p">,</span>
+   <span class="s1">&#39;admin-user&#39;</span> <span class="o">=&gt;</span> <span class="nx">\Magento\TestFramework\Bootstrap</span><span class="o">::</span><span class="na">ADMIN_NAME</span><span class="p">,</span>
+   <span class="s1">&#39;admin-password&#39;</span> <span class="o">=&gt;</span> <span class="nx">\Magento\TestFramework\Bootstrap</span><span class="o">::</span><span class="na">ADMIN_PASSWORD</span><span class="p">,</span>
+   <span class="s1">&#39;admin-email&#39;</span> <span class="o">=&gt;</span> <span class="nx">\Magento\TestFramework\Bootstrap</span><span class="o">::</span><span class="na">ADMIN_EMAIL</span><span class="p">,</span>
+   <span class="s1">&#39;admin-firstname&#39;</span> <span class="o">=&gt;</span> <span class="nx">\Magento\TestFramework\Bootstrap</span><span class="o">::</span><span class="na">ADMIN_FIRSTNAME</span><span class="p">,</span>
+   <span class="s1">&#39;admin-lastname&#39;</span> <span class="o">=&gt;</span> <span class="nx">\Magento\TestFramework\Bootstrap</span><span class="o">::</span><span class="na">ADMIN_LASTNAME</span><span class="p">,</span>
+   <span class="s1">&#39;amqp-host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;rabbitmq&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;amqp-port&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;5672&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;amqp-user&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;guest&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;amqp-password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;guest&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;session-save&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;redis&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;session-save-redis-host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;redis&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;session-save-redis-port&#39;</span> <span class="o">=&gt;</span> <span class="mi">6379</span><span class="p">,</span>
+   <span class="s1">&#39;session-save-redis-db&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+   <span class="s1">&#39;session-save-redis-max-concurrency&#39;</span> <span class="o">=&gt;</span> <span class="mi">20</span><span class="p">,</span>
+   <span class="s1">&#39;cache-backend&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;redis&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;cache-backend-redis-server&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;redis&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;cache-backend-redis-db&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="s1">&#39;cache-backend-redis-port&#39;</span> <span class="o">=&gt;</span> <span class="mi">6379</span><span class="p">,</span>
+   <span class="s1">&#39;page-cache&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;redis&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;page-cache-redis-server&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;redis&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;page-cache-redis-db&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="s1">&#39;page-cache-redis-port&#39;</span> <span class="o">=&gt;</span> <span class="mi">6379</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+</li>
+<li><p>You need to create <code class="docutils literal notranslate"><span class="pre">etc/config-global.php</span></code> based on <code class="docutils literal notranslate"><span class="pre">config-global.php.dist</span></code>. This is your container for Config data - for example: Configuration of Elasticsearch connection!</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="p">[</span>
+    <span class="s1">&#39;customer/password/limit_password_reset_requests_method&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;admin/security/admin_account_sharing&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;admin/security/limit_password_reset_requests_method&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span>
+<span class="p">];</span> 
+</pre></div>
+</div>
+</li>
+</ol>
+<p>That’s it! Now you are ready to run your first Integration Tests.</p>
+<section id="id2">
+<h3>Execution<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>There’s one thing you should be aware of: <strong>always provide full path to <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code></strong>.</p>
+<ul class="simple">
+<li><p>To run all tests declared in <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code> execute:<br> <code class="docutils literal notranslate"><span class="pre">vendor/bin/phpunit</span> <span class="pre">-c</span> <span class="pre">$(pwd)/dev/tests/integration/phpunit.xml</span></code></p></li>
+<li><p>If you need to run only specific directory, execute:<br> <code class="docutils literal notranslate"><span class="pre">vendor/bin/phpunit</span> <span class="pre">-c</span> <span class="pre">$(pwd)/dev/tests/integration/phpunit.xml</span> <span class="pre">{ABSOLUTE</span> <span class="pre">PATH</span> <span class="pre">TO</span> <span class="pre">TESTS}</span></code></p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Debugging<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>If you have <a class="reference internal" href="xdebug.html"><span class="doc">configured Xdebug</span></a>, run Integration tests inside <strong>Debug</strong> console (<code class="docutils literal notranslate"><span class="pre">warden</span> <span class="pre">debug</span></code> instead of <code class="docutils literal notranslate"><span class="pre">warden</span> <span class="pre">shell</span></code>). The code execution will stop at the breakpoints.</p>
+</section>
+<section id="id4">
+<h3>Troubleshooting<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<ul>
+<li><p>In case you’re getting a message like <code class="docutils literal notranslate"><span class="pre">Fatal</span> <span class="pre">error:</span> <span class="pre">Allowed</span> <span class="pre">memory</span> <span class="pre">size</span> <span class="pre">of</span> <span class="pre">...</span></code> try to add prefix <code class="docutils literal notranslate"><span class="pre">php</span> <span class="pre">-dmemory_limit=-1</span></code> to your command, like</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>php<span class="w"> </span>-dmemory_limit<span class="o">=</span>-1<span class="w"> </span>vendor/bin/phpunit<span class="w"> </span>-c<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/dev/tests/integration/phpunit.xml
+</pre></div>
+</div>
+</li>
+<li><p>If you’re getting a message like <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">store</span> <span class="pre">that</span> <span class="pre">was</span> <span class="pre">requested</span> <span class="pre">wasn't</span> <span class="pre">found.</span> <span class="pre">Verify</span> <span class="pre">the</span> <span class="pre">store</span> <span class="pre">and</span> <span class="pre">try</span> <span class="pre">again.</span></code> - run the following command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-Rf<span class="w"> </span>app/etc/env.php<span class="w"> </span>app/etc/config.php<span class="w"> </span>dev/tests/integration/tmp/*
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="running-setup-integration-tests">
+<h2>Running Setup Integration Tests<a class="headerlink" href="#running-setup-integration-tests" title="Permalink to this heading"></a></h2>
+<p>All the necessary files are located in <code class="docutils literal notranslate"><span class="pre">dev/tests/setup-integration/</span></code>:</p>
+<ol class="arabic">
+<li><p>Create your <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code> using contents of <code class="docutils literal notranslate"><span class="pre">phpunit.xml.dist</span></code>. We recommend customizing values of:</p>
+<ul class="simple">
+<li><p>Install config file <code class="docutils literal notranslate"><span class="pre">TESTS_INSTALL_CONFIG_FILE</span></code> should be <code class="docutils literal notranslate"><span class="pre">etc/install-config-mysql.php</span></code></p></li>
+<li><p>Tests cleanup <code class="docutils literal notranslate"><span class="pre">TESTS_CLEANUP</span></code> should be set to <code class="docutils literal notranslate"><span class="pre">enabled</span></code></p></li>
+<li><p>Magento deployment mode <code class="docutils literal notranslate"><span class="pre">TESTS_MAGENTO_MODE</span></code> should be covered both for <code class="docutils literal notranslate"><span class="pre">developer</span></code> and <code class="docutils literal notranslate"><span class="pre">production</span></code> (set to <code class="docutils literal notranslate"><span class="pre">developer</span></code> for start)</p></li>
+</ul>
+</li>
+<li><p>You need to create <code class="docutils literal notranslate"><span class="pre">etc/install-config-mysql.php</span></code> based on <code class="docutils literal notranslate"><span class="pre">etc/install-config-mysql.php.dist</span></code> as a template. Example:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="p">[</span>
+   <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+       <span class="s1">&#39;db-host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tmp-mysql&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;db-user&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;db-password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;magento&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;db-name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;magento_integration_tests&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;db-prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;backend-frontname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;admin&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;admin-user&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;admin&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;admin-password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;123123q&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;admin-email&#39;</span> <span class="o">=&gt;</span> <span class="nx">\Magento\TestFramework\Bootstrap</span><span class="o">::</span><span class="na">ADMIN_EMAIL</span><span class="p">,</span>
+       <span class="s1">&#39;admin-firstname&#39;</span> <span class="o">=&gt;</span> <span class="nx">\Magento\TestFramework\Bootstrap</span><span class="o">::</span><span class="na">ADMIN_FIRSTNAME</span><span class="p">,</span>
+       <span class="s1">&#39;admin-lastname&#39;</span> <span class="o">=&gt;</span> <span class="nx">\Magento\TestFramework\Bootstrap</span><span class="o">::</span><span class="na">ADMIN_LASTNAME</span><span class="p">,</span>
+       <span class="s1">&#39;enable-modules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Magento_TestSetupModule2,Magento_TestSetupModule1,Magento_Backend&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;disable-modules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;all&#39;</span>
+   <span class="p">],</span>
+   <span class="s1">&#39;checkout&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+       <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tmp-mysql&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;magento&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;dbname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;magento_integration_tests&#39;</span>
+   <span class="p">],</span>
+   <span class="s1">&#39;sales&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+       <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tmp-mysql&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;magento&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;dbname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;magento_integration_tests&#39;</span>
+   <span class="p">]</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>That’s it! Now you are ready to run your first Setup Integration Tests.</p>
+<section id="id5">
+<h3>Execution<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>There’s one thing you should be aware of: <strong>always provide full path to <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code></strong>.</p>
+<ul class="simple">
+<li><p>To run all tests declared in <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code> execute:<br> <code class="docutils literal notranslate"><span class="pre">vendor/bin/phpunit</span> <span class="pre">-c</span> <span class="pre">$(pwd)/dev/tests/setup-integration/phpunit.xml</span></code></p></li>
+<li><p>If you need to run only specific directory, execute:<br> <code class="docutils literal notranslate"><span class="pre">vendor/bin/phpunit</span> <span class="pre">-c</span> <span class="pre">$(pwd)/dev/tests/setup-integration/phpunit.xml</span> <span class="pre">{ABSOLUTE</span> <span class="pre">PATH</span> <span class="pre">TO</span> <span class="pre">TESTS}</span></code></p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>Debugging<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p>If you have <a class="reference internal" href="xdebug.html"><span class="doc">configured Xdebug</span></a>, run Integration tests inside <strong>Debug</strong> console (<code class="docutils literal notranslate"><span class="pre">warden</span> <span class="pre">debug</span></code> instead of <code class="docutils literal notranslate"><span class="pre">warden</span> <span class="pre">shell</span></code>). The code execution will stop at the breakpoints.</p>
+</section>
+</section>
+<section id="running-api-functional-tests">
+<h2>Running API Functional Tests<a class="headerlink" href="#running-api-functional-tests" title="Permalink to this heading"></a></h2>
+<p>All the necessary files are located in <code class="docutils literal notranslate"><span class="pre">dev/tests/api-functional/</span></code>.</p>
+<ol class="arabic">
+<li><p>Create your own <code class="docutils literal notranslate"><span class="pre">phpunit_{type}.xml</span></code> file using contents of <code class="docutils literal notranslate"><span class="pre">phpunit_{type}.xml.dist</span></code>. You <strong>need</strong> to configure:</p>
+<ul class="simple">
+<li><p>Magento installation URL (with protocol) <code class="docutils literal notranslate"><span class="pre">TESTS_BASE_URL</span></code> - for example <code class="docutils literal notranslate"><span class="pre">https://app.magento2.test/</span></code></p></li>
+<li><p>Admin credentials <code class="docutils literal notranslate"><span class="pre">TESTS_WEBSERVICE_USER</span></code> and <code class="docutils literal notranslate"><span class="pre">TESTS_WEBSERVICE_APIKEY</span></code> (it’s formally <strong>password</strong>)<br>
+<em>The Admin account should exist, it will be created only if <code class="docutils literal notranslate"><span class="pre">TESTS_MAGENTO_INSTALLATION</span></code> is enabled</em></p></li>
+</ul>
+</li>
+<li><p>Configure your Magento Installation using <code class="docutils literal notranslate"><span class="pre">etc/install-config-mysql.php.dist</span></code> as a template. The arguments are exactly the same to those you use for <code class="docutils literal notranslate"><span class="pre">bin/magento</span> <span class="pre">setup:install</span></code>:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="p">[</span>
+   <span class="s1">&#39;db-host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tmp-mysql&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;db-user&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;db-password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;magento&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;db-name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;magento_integration_tests&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;cleanup-database&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+
+   <span class="s1">&#39;amqp-host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;rabbitmq&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;amqp-port&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;5672&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;amqp-user&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;guest&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;amqp-password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;guest&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;session-save&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;redis&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;session-save-redis-host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;redis&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;session-save-redis-port&#39;</span> <span class="o">=&gt;</span> <span class="mi">6379</span><span class="p">,</span>
+   <span class="s1">&#39;session-save-redis-db&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+   <span class="s1">&#39;session-save-redis-max-concurrency&#39;</span> <span class="o">=&gt;</span> <span class="mi">20</span><span class="p">,</span>
+   <span class="s1">&#39;cache-backend&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;redis&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;cache-backend-redis-server&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;redis&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;cache-backend-redis-db&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="s1">&#39;cache-backend-redis-port&#39;</span> <span class="o">=&gt;</span> <span class="mi">6379</span><span class="p">,</span>
+   <span class="s1">&#39;page-cache&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;redis&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;page-cache-redis-server&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;redis&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;page-cache-redis-db&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="s1">&#39;page-cache-redis-port&#39;</span> <span class="o">=&gt;</span> <span class="mi">6379</span><span class="p">,</span>
+
+   <span class="s1">&#39;language&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;en_US&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;timezone&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;America/Los_Angeles&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;currency&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;USD&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;backend-frontname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;backend&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;base-url&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://app.magento2.test/&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;use-secure&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;use-rewrites&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;admin-lastname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Admin&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;admin-firstname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Admin&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;admin-email&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;admin@example.com&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;admin-user&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;admin&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;admin-password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;123123q&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;admin-use-security-key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;sales-order-increment-prefix&#39;</span> <span class="o">=&gt;</span> <span class="nb">time</span><span class="p">(),</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+</li>
+<li><p>You need to create <code class="docutils literal notranslate"><span class="pre">etc/config-global.php</span></code> based on <code class="docutils literal notranslate"><span class="pre">config-global.php.dist</span></code>. This is your container for Config data - for example: Configuration of Elasticsearch connection!</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="p">[</span>
+    <span class="s1">&#39;catalog/search/engine&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;elasticsearch6&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;catalog/search/elasticsearch6_server_hostname&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;elasticsearch&#39;</span><span class="p">,</span>
+<span class="p">];</span> 
+</pre></div>
+</div>
+</li>
+</ol>
+<section id="id7">
+<h3>Execution<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p>There’s one thing you should be aware of: <strong>always provide full path to <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code></strong>.</p>
+<ul class="simple">
+<li><p>To run all tests declared in <code class="docutils literal notranslate"><span class="pre">phpunit_{type}.xml</span></code> execute:<br> <code class="docutils literal notranslate"><span class="pre">vendor/bin/phpunit</span> <span class="pre">-c</span> <span class="pre">$(pwd)/dev/tests/api-functional/phpunit_{type}.xml</span></code></p></li>
+<li><p>If you need to run only specific directory, execute:<br> <code class="docutils literal notranslate"><span class="pre">vendor/bin/phpunit</span> <span class="pre">-c</span> <span class="pre">$(pwd)/dev/tests/api-functional/phpunit_{type}.xml</span> <span class="pre">{ABSOLUTE</span> <span class="pre">PATH</span> <span class="pre">TO</span> <span class="pre">TESTS}</span></code></p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>Debugging<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<p>When debugging APIs you may need to use Xdebug - configure your <code class="docutils literal notranslate"><span class="pre">phpunit_{type}.xml</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TESTS_XDEBUG_ENABLED</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TESTS_XDEBUG_SESSION</span></code> to <code class="docutils literal notranslate"><span class="pre">phpstorm</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="running-mftf-tests">
+<span id="magento2-testing-running-mftf-tests"></span><h2>Running MFTF Tests<a class="headerlink" href="#running-mftf-tests" title="Permalink to this heading"></a></h2>
+<p>All the MFTF-related operations are operated by <code class="docutils literal notranslate"><span class="pre">vendor/bin/mftf</span></code>, necessary files are located in <code class="docutils literal notranslate"><span class="pre">dev/tests/acceptance/</span></code>.</p>
+<p>To run Acceptance tests you need to <a class="reference internal" href="mftf.html"><span class="doc">configure the MFTF environment</span></a>. Once you’ve done that, follow these steps to run the tests.</p>
+<ol class="arabic">
+<li><p>Make sure that you enabled following in your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">WARDEN_SELENIUM</span></code> - Responsible for running virtual browser for your tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WARDEN_ALLURE</span></code> - Responsible for test results reporting</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WARDEN_SELENIUM_DEBUG</span></code> - Enables you to preview the tests with VNC</p></li>
+</ul>
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">vendor/bin/mftf</span> <span class="pre">build:project</span></code>, the configuration files will be generated in <code class="docutils literal notranslate"><span class="pre">dev/tests/acceptance</span></code>.</p></li>
+<li><p>Adjust <code class="docutils literal notranslate"><span class="pre">dev/tests/acceptance/.env</span></code> file by setting:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MAGENTO_BASE_URL</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAGENTO_BACKEND_NAME</span></code> to your Backend path (Check with <code class="docutils literal notranslate"><span class="pre">bin/magento</span> <span class="pre">info:adminuri</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAGENTO_ADMIN_USERNAME</span></code> and <code class="docutils literal notranslate"><span class="pre">MAGENTO_ADMIN_PASSWORD</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SELENIUM_HOST</span></code> (by default it is <code class="docutils literal notranslate"><span class="pre">selenium</span></code>)</p></li>
+</ul>
+<p>Sample configuration</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MAGENTO_BASE_URL</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">app</span><span class="o">.</span><span class="n">magento2</span><span class="o">.</span><span class="n">test</span><span class="o">/</span>
+<span class="n">MAGENTO_BACKEND_NAME</span><span class="o">=</span><span class="n">backend</span>
+<span class="n">MAGENTO_ADMIN_USERNAME</span><span class="o">=</span><span class="n">admin</span>
+<span class="n">MAGENTO_ADMIN_PASSWORD</span><span class="o">=</span><span class="mi">123123</span><span class="n">q</span>
+<span class="n">BROWSER</span><span class="o">=</span><span class="n">chrome</span>
+<span class="n">MODULE_WHITELIST</span><span class="o">=</span><span class="n">Magento_Framework</span><span class="p">,</span><span class="n">ConfigurableProductWishlist</span><span class="p">,</span><span class="n">ConfigurableProductCatalogSearch</span>
+<span class="n">ELASTICSEARCH_VERSION</span><span class="o">=</span><span class="mi">7</span>
+<span class="n">SELENIUM_HOST</span><span class="o">=</span><span class="n">selenium</span>
+</pre></div>
+</div>
+<p>More details can be found <a class="reference external" href="https://devdocs.magento.com/mftf/docs/configuration.html">in Magento DevDocs</a>.</p>
+</li>
+</ol>
+<section id="id9">
+<h3>Execution<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Execute single test<br><code class="docutils literal notranslate"><span class="pre">vendor/bin/mftf</span> <span class="pre">run:test</span> <span class="pre">-r</span> <span class="pre">AdminLoginTest</span></code></p></li>
+<li><p>Execute group/suite of tests<br><code class="docutils literal notranslate"><span class="pre">vendor/bin/mftf</span> <span class="pre">run:group</span> <span class="pre">-r</span> <span class="pre">customer</span></code></p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>Debugging<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<p>For more information about Debugging MFTF - please follow the <a class="reference internal" href="mftf.html"><span class="doc">Magento Functional Testing Framework</span></a> section.
+The process of debugging is based on VNC connection to the Chrome instance.</p>
+<p>You can connect to Chrome session with <code class="docutils literal notranslate"><span class="pre">warden</span> <span class="pre">vnc</span></code> command.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="livereload.html" class="btn btn-neutral float-left" title="LiveReload Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mftf.html" class="btn btn-neutral float-right" title="Magento Functional Testing Framework" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023 by David Alger..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

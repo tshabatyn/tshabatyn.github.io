@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multiple Domains &mdash; Warden  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Allure Reporting" href="reporting.html" />
+    <link rel="prev" title="Magento Functional Testing Framework" href="mftf.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Warden
+          </a>
+              <div class="version">
+                0.13.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installing.html">Installing Warden</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services.html">Global Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Warden Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environments.html">Environments</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../configuration.html">Configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="blackfire.html">Blackfire Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">Database Connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dns-resolver.html">Automatic DNS Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elasticsearch.html">Elasticsearch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="livereload.html">LiveReload Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magento2-testing.html">Testing Magento 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mftf.html">Magento Functional Testing Framework</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Multiple Domains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#magento-2-run-params">Magento 2 Run Params</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reporting.html">Allure Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xdebug.html">Xdebug Support</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About Warden</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images.html">Docker Images</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/wardenenv/warden">Github Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Warden</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../configuration.html">Configuration</a></li>
+      <li class="breadcrumb-item active">Multiple Domains</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="multiple-domains">
+<h1>Multiple Domains<a class="headerlink" href="#multiple-domains" title="Permalink to this heading"></a></h1>
+<p>If you need multiple domains configured for your project, Warden will now automatically route all sub-domains of the configured <code class="docutils literal notranslate"><span class="pre">TRAEFIK_DOMAIN</span></code> (as given when running <code class="docutils literal notranslate"><span class="pre">env-init</span></code>) to the Varnish/Nginx containers provided there is not a more specific rule such as for example <code class="docutils literal notranslate"><span class="pre">rabbitmq.exampleproject.com</span></code> which routes to the <code class="docutils literal notranslate"><span class="pre">rabbitmq</span></code> service for the project.</p>
+<p>Multiple top-level domains may also be setup by following the instructions below:</p>
+<ol class="arabic">
+<li><p>Sign certificates for your new domains:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>warden sign-certificate alternate1.test
+warden sign-certificate alternate2.test
+</pre></div>
+</div>
+</li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">.warden/warden-env.yml</span></code> file with the contents below (this will be additive to the docker-compose config Warden uses for the env, anything added here will be merged in, and you can see the complete config using <code class="docutils literal notranslate"><span class="pre">warden</span> <span class="pre">env</span> <span class="pre">config</span></code>):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.5&quot;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">varnish</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.${WARDEN_ENV_NAME}-varnish.rule=</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">HostRegexp(`{subdomain:.+}.${TRAEFIK_DOMAIN}`)</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">|| Host(`${TRAEFIK_DOMAIN}`)</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">|| HostRegexp(`{subdomain:.+}.alternate1.test`)</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">|| Host(`alternate1.test`)</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">|| HostRegexp(`{subdomain:.+}.alternate2.test`)</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">|| Host(`alternate2.test`)</span>
+<span class="w">  </span><span class="nt">nginx</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.${WARDEN_ENV_NAME}-nginx.rule=</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">HostRegexp(`{subdomain:.+}.${TRAEFIK_DOMAIN}`)</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">|| Host(`${TRAEFIK_DOMAIN}`)</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">|| HostRegexp(`{subdomain:.+}.alternate1.test`)</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">|| Host(`alternate1.test`)</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">|| HostRegexp(`{subdomain:.+}.alternate2.test`)</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">|| Host(`alternate2.test`)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Configure the application to handle traffic coming from each of these domains appropriately. An example on this for Magento 2 environments may be found below.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">warden</span> <span class="pre">env</span> <span class="pre">up</span></code> to update the containers, after which each of the URLs should work as expected.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If these alternate domains must be resolvable from within the FPM containers, you must also leverage <code class="docutils literal notranslate"><span class="pre">extra_hosts</span></code> to add each specific sub-domain to the <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> file of the container as dnsmasq is used only on the host machine, not inside the containers. This should look something like the following excerpt.</p>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.5&quot;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">php-fpm</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">extra_hosts</span><span class="p">:</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alternate1.test:${TRAEFIK_ADDRESS:-0.0.0.0}</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub1.alternate1.test:${TRAEFIK_ADDRESS:-0.0.0.0}</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub2.alternate1.test:${TRAEFIK_ADDRESS:-0.0.0.0}</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alternate2.test:${TRAEFIK_ADDRESS:-0.0.0.0}</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub1.alternate2.test:${TRAEFIK_ADDRESS:-0.0.0.0}</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub2.alternate2.test:${TRAEFIK_ADDRESS:-0.0.0.0}</span>
+
+<span class="w">  </span><span class="nt">php-debug</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">extra_hosts</span><span class="p">:</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alternate1.test:${TRAEFIK_ADDRESS:-0.0.0.0}</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub1.alternate1.test:${TRAEFIK_ADDRESS:-0.0.0.0}</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub2.alternate1.test:${TRAEFIK_ADDRESS:-0.0.0.0}</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alternate2.test:${TRAEFIK_ADDRESS:-0.0.0.0}</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub1.alternate2.test:${TRAEFIK_ADDRESS:-0.0.0.0}</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub2.alternate2.test:${TRAEFIK_ADDRESS:-0.0.0.0}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<section id="magento-2-run-params">
+<h2>Magento 2 Run Params<a class="headerlink" href="#magento-2-run-params" title="Permalink to this heading"></a></h2>
+<p>When multiple domains are being used to load different stores or websites on Magento 2, the following configuration should be defined in order to set run codes and types as needed.</p>
+<ol class="arabic">
+<li><p>Add a file at <code class="docutils literal notranslate"><span class="pre">app/etc/stores.php</span></code> with the following contents:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">\Magento\Store\Model\StoreManager</span><span class="p">;</span>
+<span class="nv">$serverName</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_HOST&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_HOST&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="k">null</span><span class="p">;</span>
+
+<span class="k">switch</span> <span class="p">(</span><span class="nv">$serverName</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s1">&#39;domain1.exampleproject.test&#39;</span><span class="o">:</span>
+        <span class="nv">$runCode</span> <span class="o">=</span> <span class="s1">&#39;examplecode1&#39;</span><span class="p">;</span>
+        <span class="nv">$runType</span> <span class="o">=</span> <span class="s1">&#39;website&#39;</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;domain2.exampleproject.test&#39;</span><span class="o">:</span>
+        <span class="nv">$runCode</span> <span class="o">=</span> <span class="s1">&#39;examplecode2&#39;</span><span class="p">;</span>
+        <span class="nv">$runType</span> <span class="o">=</span> <span class="s1">&#39;website&#39;</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+        <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">((</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="nx">StoreManager</span><span class="o">::</span><span class="na">PARAM_RUN_TYPE</span><span class="p">])</span>
+        <span class="o">||</span> <span class="o">!</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="nx">StoreManager</span><span class="o">::</span><span class="na">PARAM_RUN_TYPE</span><span class="p">])</span>
+    <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="nx">StoreManager</span><span class="o">::</span><span class="na">PARAM_RUN_CODE</span><span class="p">])</span>
+        <span class="o">||</span> <span class="o">!</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="nx">StoreManager</span><span class="o">::</span><span class="na">PARAM_RUN_CODE</span><span class="p">])</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$_SERVER</span><span class="p">[</span><span class="nx">StoreManager</span><span class="o">::</span><span class="na">PARAM_RUN_CODE</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$runCode</span><span class="p">;</span>
+    <span class="nv">$_SERVER</span><span class="p">[</span><span class="nx">StoreManager</span><span class="o">::</span><span class="na">PARAM_RUN_TYPE</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$runType</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above example will not alter production site behavior given the default is to return should the <code class="docutils literal notranslate"><span class="pre">HTTP_HOST</span></code> value not match one of the defined <code class="docutils literal notranslate"><span class="pre">case</span></code> statements. This is desired as some hosting environments define run codes and types in an Nginx mapping. One may add production host names to the switch block should it be desired to use the same site switching mechanism across all environments.</p>
+</div>
+</li>
+<li><p>Then in <code class="docutils literal notranslate"><span class="pre">composer.json</span></code> add the file created in the previous step to the list of files which are automatically loaded by composer on each web request:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;autoload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;files&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;app/etc/stores.php&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is similar to using <code class="docutils literal notranslate"><span class="pre">magento-vars.php</span></code> on Magento Commerce Cloud, but using composer to load the file rather than relying on Commerce Cloud magic: https://devdocs.magento.com/guides/v2.3/cloud/project/project-multi-sites.html</p>
+</div>
+</li>
+<li><p>After editing the <code class="docutils literal notranslate"><span class="pre">composer.json</span></code> regenerate the auto load configuration:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>composer<span class="w"> </span>dump-autoload
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mftf.html" class="btn btn-neutral float-left" title="Magento Functional Testing Framework" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="reporting.html" class="btn btn-neutral float-right" title="Allure Reporting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023 by David Alger..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

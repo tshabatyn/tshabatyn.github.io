@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installing Magento 2 &mdash; Warden  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Installing Shopware 6" href="shopware.html" />
+    <link rel="prev" title="Environment Types" href="types.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Warden
+          </a>
+              <div class="version">
+                0.13.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installing.html">Installing Warden</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services.html">Global Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Warden Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../environments.html">Environments</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">Environment Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#environment-templates">Environment Templates</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installing Magento 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shopware.html">Installing Shopware 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customizing.html">Customizing An Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drupal.html">Installing Drupal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About Warden</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images.html">Docker Images</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/wardenenv/warden">Github Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Warden</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../environments.html">Environments</a></li>
+      <li class="breadcrumb-item active">Installing Magento 2</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installing-magento-2">
+<h1>Installing Magento 2<a class="headerlink" href="#installing-magento-2" title="Permalink to this heading"></a></h1>
+<p>The below example demonstrates the from-scratch setup of the Magento 2 application for local development. A similar process can easily be used to configure an environment of any other type. This assumes that Warden has been previously started via <code class="docutils literal notranslate"><span class="pre">warden</span> <span class="pre">svc</span> <span class="pre">up</span></code> as part of the installation procedure.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In addition to the below manual process, there is a <code class="docutils literal notranslate"><span class="pre">Github</span> <span class="pre">Template</span> <span class="pre">available</span> <span class="pre">for</span> <span class="pre">Magento</span> <span class="pre">2</span> <span class="pre">&lt;https://github.com/wardenenv/warden-env-magento2&gt;</span></code>_ allowing for quick setup of new Magento projects. To use this, click the green “Use this template” button to create your own repository based on the template repository, run the init script and update the README with any project specific information.</p>
+</div>
+<ol class="arabic">
+<li><p>Create a new directory on your host machine at the location of your choice and then jump into the new directory to get started:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> mkdir -p ~/Sites/exampleproject
+ cd ~/Sites/exampleproject
+</pre></div>
+</div>
+</li>
+<li><p>From the root of your new project directory, run <code class="docutils literal notranslate"><span class="pre">env-init</span></code> to create the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file with configuration needed for Warden and Docker to work with the project.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> warden env-init exampleproject magento2
+</pre></div>
+</div>
+<p>The result of this command is a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file in the project root (tip: commit this to your VCS to share the configuration with other team members) having the following contents:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> WARDEN_ENV_NAME=exampleproject
+ WARDEN_ENV_TYPE=magento2
+ WARDEN_WEB_ROOT=/
+
+ TRAEFIK_DOMAIN=exampleproject.test
+ TRAEFIK_SUBDOMAIN=app
+
+ WARDEN_DB=1
+ WARDEN_ELASTICSEARCH=0
+ WARDEN_OPENSEARCH=1
+ WARDEN_ELASTICHQ=0
+ WARDEN_VARNISH=1
+ WARDEN_RABBITMQ=1
+ WARDEN_REDIS=1
+
+ OPENSEARCH_VERSION=2.5
+ MYSQL_DISTRIBUTION=mariadb
+ MYSQL_DISTRIBUTION_VERSION=10.6
+ NODE_VERSION=12
+ COMPOSER_VERSION=2.2
+ PHP_VERSION=8.1
+ PHP_XDEBUG_3=1
+ RABBITMQ_VERSION=3.9
+ REDIS_VERSION=7.0
+ VARNISH_VERSION=7.1
+
+ WARDEN_SYNC_IGNORE=
+
+ WARDEN_ALLURE=0
+ WARDEN_SELENIUM=0
+ WARDEN_SELENIUM_DEBUG=0
+ WARDEN_BLACKFIRE=0
+ WARDEN_SPLIT_SALES=0
+ WARDEN_SPLIT_CHECKOUT=0
+ WARDEN_TEST_DB=0
+ WARDEN_MAGEPACK=0
+
+ BLACKFIRE_CLIENT_ID=
+ BLACKFIRE_CLIENT_TOKEN=
+ BLACKFIRE_SERVER_ID=
+ BLACKFIRE_SERVER_TOKEN=
+</pre></div>
+</div>
+</li>
+<li><p>Sign an SSL certificate for use with the project (the input here should match the value of <code class="docutils literal notranslate"><span class="pre">TRAEFIK_DOMAIN</span></code> in the above <code class="docutils literal notranslate"><span class="pre">.env</span></code> example file):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> warden sign-certificate exampleproject.test
+</pre></div>
+</div>
+</li>
+<li><p>Next you’ll want to start the project environment:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> warden env up
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you encounter an error about <code class="docutils literal notranslate"><span class="pre">Mounts</span> <span class="pre">denied</span></code>, follow the instructions in the error message and run <code class="docutils literal notranslate"><span class="pre">warden</span> <span class="pre">env</span> <span class="pre">up</span></code> again.</p>
+</div>
+</li>
+<li><p>Drop into a shell within the project environment. Commands following this step in the setup procedure will be run from within the <code class="docutils literal notranslate"><span class="pre">php-fpm</span></code> docker container this launches you into:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> warden shell
+</pre></div>
+</div>
+</li>
+<li><p>Configure global Magento Marketplace credentials</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> composer global config http-basic.repo.magento.com &lt;username&gt; &lt;password&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To locate your authentication keys for Magento 2 repository, <code class="docutils literal notranslate"><span class="pre">reference</span> <span class="pre">DevDocs</span> <span class="pre">&lt;https://devdocs.magento.com/guides/v2.3/install-gde/prereq/connect-auth.html&gt;</span></code>_.</p>
+<p>If you have previously configured global credentials, you may skip this step, as <code class="docutils literal notranslate"><span class="pre">~/.composer/</span></code> is mounted into the container from the host machine in order to share composer cache between projects, and also shares the global <code class="docutils literal notranslate"><span class="pre">auth.json</span></code> from the host machine.</p>
+<p>Use the <strong>Public key</strong> as your username and the <strong>Private key</strong> as your password.</p>
+</div>
+</li>
+<li><p>Initialize project source files using composer create-project and then move them into place:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> META_PACKAGE=magento/project-community-edition META_VERSION=2.4.x
+
+ composer create-project --repository-url=https://repo.magento.com/ \
+     &quot;${META_PACKAGE}&quot; /tmp/exampleproject &quot;${META_VERSION}&quot;
+
+ rsync -a /tmp/exampleproject/ /var/www/html/
+ rm -rf /tmp/exampleproject/
+</pre></div>
+</div>
+</li>
+<li><p>Install the application and you should be all set:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> ## Install Application
+ bin/magento setup:install \
+     --backend-frontname=backend \
+     --amqp-host=rabbitmq \
+     --amqp-port=5672 \
+     --amqp-user=guest \
+     --amqp-password=guest \
+     --db-host=db \
+     --db-name=magento \
+     --db-user=magento \
+     --db-password=magento \
+     --search-engine=opensearch \
+     --opensearch-host=opensearch \
+     --opensearch-port=9200 \
+     --opensearch-index-prefix=magento2 \
+     --opensearch-enable-auth=0 \
+     --opensearch-timeout=15 \
+     --http-cache-hosts=varnish:80 \
+     --session-save=redis \
+     --session-save-redis-host=redis \
+     --session-save-redis-port=6379 \
+     --session-save-redis-db=2 \
+     --session-save-redis-max-concurrency=20 \
+     --cache-backend=redis \
+     --cache-backend-redis-server=redis \
+     --cache-backend-redis-db=0 \
+     --cache-backend-redis-port=6379 \
+     --page-cache=redis \
+     --page-cache-redis-server=redis \
+     --page-cache-redis-db=1 \
+     --page-cache-redis-port=6379
+
+ ## Configure Application
+ bin/magento config:set --lock-env web/unsecure/base_url \
+     &quot;https://${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}/&quot;
+
+ bin/magento config:set --lock-env web/secure/base_url \
+     &quot;https://${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}/&quot;
+
+ bin/magento config:set --lock-env web/secure/offloader_header X-Forwarded-Proto
+
+ bin/magento config:set --lock-env web/secure/use_in_frontend 1
+ bin/magento config:set --lock-env web/secure/use_in_adminhtml 1
+ bin/magento config:set --lock-env web/seo/use_rewrites 1
+
+ bin/magento config:set --lock-env system/full_page_cache/caching_application 2
+ bin/magento config:set --lock-env system/full_page_cache/ttl 604800
+
+ bin/magento config:set --lock-env catalog/search/enable_eav_indexer 1
+
+ bin/magento config:set --lock-env dev/static/sign 0
+
+ bin/magento deploy:mode:set -s developer
+ bin/magento cache:disable block_html full_page
+
+ bin/magento indexer:reindex
+ bin/magento cache:flush
+</pre></div>
+</div>
+</li>
+<li><p>Generate an admin user and configure 2FA for OTP</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> ## Generate localadmin user
+ ADMIN_PASS=&quot;$(pwgen -n1 16)&quot;
+ ADMIN_USER=localadmin
+
+ bin/magento admin:user:create \
+     --admin-password=&quot;${ADMIN_PASS}&quot; \
+     --admin-user=&quot;${ADMIN_USER}&quot; \
+     --admin-firstname=&quot;Local&quot; \
+     --admin-lastname=&quot;Admin&quot; \
+     --admin-email=&quot;${ADMIN_USER}@example.com&quot;
+ printf &quot;u: %s\np: %s\n&quot; &quot;${ADMIN_USER}&quot; &quot;${ADMIN_PASS}&quot;
+
+ ## Configure 2FA provider
+ OTPAUTH_QRI=
+ TFA_SECRET=$(python -c &quot;import base64; print base64.b32encode(&#39;$(pwgen -A1 128)&#39;)&quot; | sed &#39;s/=*$//&#39;)
+ OTPAUTH_URL=$(printf &quot;otpauth://totp/%s%%3Alocaladmin%%40example.com?issuer=%s&amp;secret=%s&quot; \
+     &quot;${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}&quot; &quot;${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}&quot; &quot;${TFA_SECRET}&quot;
+ )
+
+ bin/magento config:set --lock-env twofactorauth/general/force_providers google
+ bin/magento security:tfa:google:set-secret &quot;${ADMIN_USER}&quot; &quot;${TFA_SECRET}&quot;
+
+ printf &quot;%s\n\n&quot; &quot;${OTPAUTH_URL}&quot;
+ printf &quot;2FA Authenticator Codes:\n%s\n&quot; &quot;$(oathtool -s 30 -w 10 --totp --base32 &quot;${TFA_SECRET}&quot;)&quot;
+
+ segno &quot;${OTPAUTH_URL}&quot; -s 4 -o &quot;pub/media/${ADMIN_USER}-totp-qr.png&quot;
+ printf &quot;%s\n\n&quot; &quot;https://${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}/media/${ADMIN_USER}-totp-qr.png?t=$(date +%s)&quot;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use of 2FA is mandatory on Magento <code class="docutils literal notranslate"><span class="pre">2.4.x</span></code> and setup of 2FA should be skipped when installing <code class="docutils literal notranslate"><span class="pre">2.3.x</span></code> or earlier. Where 2FA is setup manually via UI upon login rather than using the CLI commands above, the 2FA configuration email may be retrieved from <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">Mailhog</span> <span class="pre">service</span> <span class="pre">&lt;https://mailhog.warden.test/&gt;</span></code>_.</p>
+</div>
+</li>
+<li><p>Launch the application in your browser:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://app.exampleproject.test/">https://app.exampleproject.test/</a></p></li>
+<li><p><a class="reference external" href="https://app.exampleproject.test/backend/">https://app.exampleproject.test/backend/</a></p></li>
+<li><p><a class="reference external" href="https://rabbitmq.exampleproject.test/">https://rabbitmq.exampleproject.test/</a></p></li>
+<li><p><a class="reference external" href="https://elasticsearch.exampleproject.test/">https://elasticsearch.exampleproject.test/</a></p></li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To completely destroy the <code class="docutils literal notranslate"><span class="pre">exampleproject</span></code> environment we just created, run <code class="docutils literal notranslate"><span class="pre">warden</span> <span class="pre">env</span> <span class="pre">down</span> <span class="pre">-v</span></code> to tear down the project’s Docker containers, volumes, etc.</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="types.html" class="btn btn-neutral float-left" title="Environment Types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="shopware.html" class="btn btn-neutral float-right" title="Installing Shopware 6" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023 by David Alger..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

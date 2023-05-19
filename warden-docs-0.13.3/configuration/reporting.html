@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Allure Reporting &mdash; Warden  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Xdebug Support" href="xdebug.html" />
+    <link rel="prev" title="Multiple Domains" href="multipledomains.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Warden
+          </a>
+              <div class="version">
+                0.13.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installing.html">Installing Warden</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services.html">Global Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Warden Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environments.html">Environments</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../configuration.html">Configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="blackfire.html">Blackfire Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">Database Connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dns-resolver.html">Automatic DNS Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elasticsearch.html">Elasticsearch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="livereload.html">LiveReload Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magento2-testing.html">Testing Magento 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mftf.html">Magento Functional Testing Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multipledomains.html">Multiple Domains</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Allure Reporting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#phpunit-reports">PHPUnit Reports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#codeception-reports">Codeception Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#web-interface">Web Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="xdebug.html">Xdebug Support</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About Warden</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../images.html">Docker Images</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/wardenenv/warden">Github Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Warden</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../configuration.html">Configuration</a></li>
+      <li class="breadcrumb-item active">Allure Reporting</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="allure-reporting">
+<h1>Allure Reporting<a class="headerlink" href="#allure-reporting" title="Permalink to this heading"></a></h1>
+<p><a class="reference external" href="http://allure.qatools.ru/">Allure</a> is a powerful <strong>test reporting framework</strong>. It is fully compatible with <a class="reference external" href="https://phpunit.de/">PHPUnit</a> and  <a class="reference external" href="https://codeception.com/">Codeception</a>. This means that each type of test available in <strong>Magento 2</strong> can be visualized.</p>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h2>
+<p>To enable Allure in your project environment, add to your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WARDEN_ALLURE</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>As a result both <code class="docutils literal notranslate"><span class="pre">php-fpm</span></code> and <code class="docutils literal notranslate"><span class="pre">php-debug</span></code> containers get additional mount <code class="docutils literal notranslate"><span class="pre">/var/allure-results</span></code> where the Test results should be saved.</p>
+<section id="phpunit-reports">
+<h3>PHPUnit Reports<a class="headerlink" href="#phpunit-reports" title="Permalink to this heading"></a></h3>
+<p>To visualize your PHPUnit Tests results <em>(Unit, Integration, API functional, Static)</em> in Allure, you need to edit <code class="docutils literal notranslate"><span class="pre">phpunit.xml</span></code> file and find <code class="docutils literal notranslate"><span class="pre">&lt;listeners&gt;</span></code> section. If you have <code class="docutils literal notranslate"><span class="pre">&lt;listener</span> <span class="pre">class=&quot;Yandex\Allure\Adapter\AllureAdapter&quot;&gt;</span></code> node, just change the path where logs are saved: <code class="docutils literal notranslate"><span class="pre">&lt;string&gt;/var/allure-results&lt;/string&gt;</span></code> (please notice leading <code class="docutils literal notranslate"><span class="pre">/</span></code>).</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&lt;listeners&gt;</span>
+<span class="w">        </span><span class="nt">&lt;listener</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;Magento\TestFramework\Event\PhpUnit&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;listener</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;Yandex\Allure\Adapter\AllureAdapter&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;arguments&gt;</span>
+<span class="w">                </span><span class="nt">&lt;string&gt;</span>/var/allure-results<span class="nt">&lt;/string&gt;</span>
+<span class="w">                </span>...
+</pre></div>
+</div>
+</section>
+<section id="codeception-reports">
+<h3>Codeception Reports<a class="headerlink" href="#codeception-reports" title="Permalink to this heading"></a></h3>
+<p>Adjusting Codeception reports path is a little bit more complicated. Please find the <code class="docutils literal notranslate"><span class="pre">dev/tests/acceptance/codeception.yml</span></code> file, under <code class="docutils literal notranslate"><span class="pre">Magento\FunctionalTestingFramework\Allure\Adapter\MagentoAllureAdapter</span></code> you’ll find <code class="docutils literal notranslate"><span class="pre">outputDirectory</span></code>. Change it’s value to <code class="docutils literal notranslate"><span class="pre">/var/allure-results</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">extensions</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">Magento\FunctionalTestingFramework\Allure\Adapter\MagentoAllureAdapter</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">deletePreviousResults</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">            </span><span class="nt">outputDirectory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/allure-results</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="web-interface">
+<h2>Web Interface<a class="headerlink" href="#web-interface" title="Permalink to this heading"></a></h2>
+<p>Allure reports are available with your Web Browser on <code class="docutils literal notranslate"><span class="pre">allure</span></code> subdomain (eg. <code class="docutils literal notranslate"><span class="pre">https://allure.magento2.test/</span></code>). Reports are generated with 5 seconds interval.</p>
+<p><img alt="Example Report generated with Allure" src="../_images/allure-reporting.png" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="multipledomains.html" class="btn btn-neutral float-left" title="Multiple Domains" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="xdebug.html" class="btn btn-neutral float-right" title="Xdebug Support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023 by David Alger..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
