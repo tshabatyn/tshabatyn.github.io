@@ -19,7 +19,7 @@ Under the hood `docker-compose` is used to control everything which Warden runs 
 * Warden issued wildcard SSL certificates for running https on all local development domains.
 * Full support for Magento 1, Magento 2, Laravel, Symfony 4, Shopware 6 on both macOS and Linux.
 * Ability to override, extend, or setup completely custom environment definitions on a per-project basis.
-* The [mutagen](./mutagen.md) files syncing, improves performance on the macOS based systems.
+* The [mutagen](./configuration/mutagen.md) files syncing, improves performance on the macOS based systems.
 
 ```{toctree}
 ---

@@ -1,4 +1,4 @@
-## Mutagen files syncing
+# Mutagen files syncing
 
 The [mutagen](https://mutagen.io/) can significantly improve the performance of the big projects.
 Which contains a huge number of small files on macOS based systems.
